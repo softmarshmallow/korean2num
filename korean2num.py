@@ -49,12 +49,41 @@ numbers = [
     ("해", 100000000000000000000),
 ]
 
+float_nums = [
+    ("일", 1),
+    ("이", 2),
+    ("삼", 3),
+    ("사", 4),
+    ("오", 5),
+    ("육", 6),
+    ("칠", 7),
+    ("팔", 8),
+    ("구", 9)
+]
+
 
 def decode(korean_num):
     decode_result = []
     result = 0
     temp_result = 0
     index = 0
+
+    float_dividing = korean_num.split("점")
+    float_result = ""
+    if len(float_dividing) == 2:
+        korean_num = float_dividing[0]
+        float_num = float_dividing[1]
+        for c in float_num:
+            for float_num, float_value in float_nums:
+                if c == float_num:
+                    float_result += str(float_value)
+                    break
+        if len(float_result) == 0:
+            float_result = 0.0
+        else:
+            float_result = float("0." + float_result)
+    else:
+        float_result = 0.0
 
     while index < len(korean_num):
         for number, true_value in numbers:
@@ -89,4 +118,8 @@ def decode(korean_num):
                 temp_result += number
 
     result += temp_result
+
+    if float_result != 0.0:
+        result += float_result
+
     return result
