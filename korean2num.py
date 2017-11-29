@@ -54,7 +54,9 @@ number_types = [
     ("키로그램", "kg"),
     ("킬로", "kg"),
     ("킬로그램", "kg"),
+    ('킬로그람', "kg"),
     ("그램", "g"),
+    ("그람", "g"),
     ("리터", "L"),
     ("밀리리터", "mL"),
     ("미리리터", "mL"),
@@ -63,6 +65,7 @@ number_types = [
     ("센티미터", "cm"),
     ("밀리미터", "mm"),
     ("미터", "m"),
+    ("개입", "개입"),
     ("개", "개"),
     ("명", "명"),
     ("원", "원"),
@@ -71,7 +74,19 @@ number_types = [
     ("모", "모"),
     ("세트", "세트"),
     ("병", "병"),
-    ("장", "장")
+    ("장", "장"),
+    ("박스", "박스"),
+    ("봉지", "봉지"),
+    ("팩", "팩"),
+    ("줄", "줄"),
+    ("망", "망"),
+    ("포", "포"),
+    ("말", "말"),
+    ("캔", "캔"),
+    ("판", "판"),
+    ("자루", "자루"),
+    ("가마니", "가마니"),
+    ("통", "통")
 ]
 
 float_nums = [
@@ -95,7 +110,7 @@ def decode(korean_num):
     number_type = None
 
     for num_type, num_str in number_types:
-        if korean_num[-1*len(num_type):] == num_type:
+        if korean_num[-1 * len(num_type):] == num_type:
             number_type = num_str
             break
 
@@ -115,7 +130,6 @@ def decode(korean_num):
             float_result = float("0." + float_result)
     else:
         float_result = 0.0
-
 
     while index < len(korean_num):
         for number, true_value in numbers:
