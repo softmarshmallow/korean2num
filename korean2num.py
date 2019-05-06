@@ -7,6 +7,16 @@ Korean to number
 """
 
 numbers = [
+    ("0", 0),
+    ("1", 1),
+    ("2", 2),
+    ("3", 3),
+    ("4", 4),
+    ("5", 5),
+    ("6", 6),
+    ("7", 7),
+    ("8", 8),
+    ("9", 9),
     ("스물", 20),
     ("서른", 30),
     ("마흔", 40),
@@ -66,6 +76,7 @@ number_types = {
     "센티미터": "cm",
     "밀리미터": "mm",
     "미터": "m",
+    "제곱미터": "㎡",
     "개입": "개입",
     "개": "개",
     "명": "명",
@@ -168,7 +179,8 @@ def decode(korean_num):
                 temp_result += number
             elif not decode_result[index + 1][1]:
                 temp_result += number
-            elif math.log10(decode_result[index + 1][0]) > 3 and (math.log10(decode_result[index + 1][0]) - 4) % 4 == 0:
+            elif math.log10(decode_result[index + 1][0]) > 3 and (
+                    math.log10(decode_result[index + 1][0]) - 4) % 4 == 0:
                 temp_result += number
 
     result += temp_result
@@ -180,3 +192,12 @@ def decode(korean_num):
         result = str(result) + number_type
 
     return result
+
+
+def run_test():
+    result = decode("3175만3235")
+    print(result)
+
+
+if __name__ == "__main__":
+    run_test()
